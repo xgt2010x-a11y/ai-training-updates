@@ -81,13 +81,16 @@ jobs:
           PROTECTED = {"data", "profile", "profiles", "updates", "backups", "default-profile.json"}
           RELEASE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,79}\Z")
           HASH = re.compile(r"[0-9a-fA-F]{64}\Z")
-          SOURCE_SUFFIXES = {".pdb", ".cs", ".csx", ".fs", ".fsx", ".vb", ".py", ".pyw", ".pyi", ".js", ".jsx",
+          SOURCE_SUFFIXES = {".pdb", ".cs", ".csx", ".fs", ".fsx", ".vb", ".py", ".pyw", ".pyi", ".pyx", ".pxd", ".js", ".jsx",
                              ".ts", ".tsx", ".c", ".cc", ".cpp", ".h", ".hpp", ".csproj", ".fsproj", ".vbproj",
                              ".sln", ".slnx", ".props", ".targets", ".ps1", ".psm1", ".cmd", ".bat", ".sh", ".yml",
                              ".yaml", ".ipynb", ".map", ".resx", ".razor", ".xaml", ".pfx", ".p12", ".key", ".dpapi",
                              ".zip", ".7z", ".tar", ".gz", ".gzip", ".xz", ".tgz", ".bz2", ".tbz2", ".zst", ".rar",
                              ".cab", ".iso", ".img", ".whl", ".egg", ".jar", ".nupkg", ".snupkg"}
           
+          
+          # Exact upstream archives required by the runtime and third-party license notices.
+          ALLOWED_ARCHIVES = {'licenses/FFmpeg-Sources/build/aom/aom-src-v3.9.0.tar.xz': '674AA4E992C6F5517AC88F927C461FA775C0EC6B5FED9C24E61D3A2CD97528B9', 'licenses/FFmpeg-Sources/build/ffmpeg/ffmpeg-src-n4.4.4.tar.xz': '20A10677D67F8E524E5159C860E1A36333D40B60A8C1A83C9890E536832B6818', 'licenses/FFmpeg-Sources/build/libvpx/libvpx-src-v1.14.0.tar.xz': '4CB354C566F324AF1B0264475CB1A3B4FFEFC93199869E0F080F47A8BAC17976', 'licenses/FFmpeg-Sources/build/openh264/openh264-api-headers-v1.8.0.tar.xz': '90C9333FE8DD9CE8F6585B7A2DAE595276338F42B2850DBE2A75218E2957D1DB', 'licenses/FFmpeg-Sources/opencv_ffmpeg.tar.xz': 'BFC957C9E53086410BDCEC8DB406951D1D362556ACA805B8B732DEA6C2D69ABC', 'licenses/FFmpeg-Sources/opencv/opencv-videoio-ffmpeg.tar.xz': '70B11035EC264811BC6502B110E5B37C55D3D9C72A61D31821EEB12E9A585927', 'ps5/runtime-binary-v1/python313.zip': '58AF5BF33DCFDEDF72F60B0926FDB619CC2960C9D4200677531D35F626C8EE24'}
           
           def require(condition, message):
               if not condition:
@@ -127,9 +130,9 @@ jobs:
                           "Reserved Windows path")
               require(parts[0].casefold() not in PROTECTED and not parts[0].casefold().startswith(".v3-"),
                       "Personal data or updater state in package")
-              require(parts[0].casefold() != "ps5" and Path(value).suffix.casefold() not in SOURCE_SUFFIXES
+              require((Path(value).suffix.casefold() not in SOURCE_SUFFIXES or value in ALLOWED_ARCHIVES)
                       and not {p.casefold() for p in parts}.intersection({".git", ".env", "signing-key.dpapi"}),
-                      "Source, symbols, secrets, nested archives, and ps5 runtime must not be published")
+                      "V3 source, symbols, secrets, and unapproved nested archives must not be published")
               return value
           
           
@@ -142,6 +145,8 @@ jobs:
                   require(path not in names, "Duplicate file path")
                   names.add(path)
                   require(type(item["sha256"]) is str and HASH.fullmatch(item["sha256"]), "Invalid file hash")
+                  if item["path"] in ALLOWED_ARCHIVES:
+                      require(item["sha256"].upper() == ALLOWED_ARCHIVES[item["path"]], "Approved runtime/license archive differs from its pinned checksum")
                   if with_size:
                       integer(item["size"], 0, MAX_PACKAGE)
                       expanded += item["size"]
