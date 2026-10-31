@@ -84,7 +84,9 @@ jobs:
           SOURCE_SUFFIXES = {".pdb", ".cs", ".csx", ".fs", ".fsx", ".vb", ".py", ".pyw", ".pyi", ".js", ".jsx",
                              ".ts", ".tsx", ".c", ".cc", ".cpp", ".h", ".hpp", ".csproj", ".fsproj", ".vbproj",
                              ".sln", ".slnx", ".props", ".targets", ".ps1", ".psm1", ".cmd", ".bat", ".sh", ".yml",
-                             ".yaml", ".ipynb", ".map", ".resx", ".razor", ".xaml", ".pfx", ".p12", ".key", ".dpapi"}
+                             ".yaml", ".ipynb", ".map", ".resx", ".razor", ".xaml", ".pfx", ".p12", ".key", ".dpapi",
+                             ".zip", ".7z", ".tar", ".gz", ".gzip", ".xz", ".tgz", ".bz2", ".tbz2", ".zst", ".rar",
+                             ".cab", ".iso", ".img", ".whl", ".egg", ".jar", ".nupkg", ".snupkg"}
           
           
           def require(condition, message):
@@ -127,7 +129,7 @@ jobs:
                       "Personal data or updater state in package")
               require(parts[0].casefold() != "ps5" and Path(value).suffix.casefold() not in SOURCE_SUFFIXES
                       and not {p.casefold() for p in parts}.intersection({".git", ".env", "signing-key.dpapi"}),
-                      "Source, symbols, secrets, and ps5 runtime must not be published")
+                      "Source, symbols, secrets, nested archives, and ps5 runtime must not be published")
               return value
           
           
@@ -185,7 +187,10 @@ jobs:
               require(type(manifest["notes"]) is str and len(manifest["notes"]) <= 16000, "Invalid notes")
               from datetime import datetime
               require(type(manifest["publishedUtc"]) is str, "Invalid timestamp")
-              timestamp = datetime.fromisoformat(manifest["publishedUtc"].replace("Z", "+00:00"))
+              # .NET emits seven fractional digits; Python <=3.10 accepts at most six.
+              timestamp_text = manifest["publishedUtc"].replace("Z", "+00:00")
+              timestamp_text = re.sub(r"(\.\d{6})\d+(?=[+-]\d{2}:\d{2}$)", r"\1", timestamp_text)
+              timestamp = datetime.fromisoformat(timestamp_text)
               require(timestamp.year > 1 and timestamp.utcoffset() is not None, "Timestamp requires timezone")
               package = manifest["package"]
               exact_keys(package, "url size sha256")
