@@ -4,9 +4,17 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.45 — App performance and reliability fixes](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.45)
+[AI Trainer 3.1.46 — Controller reader and PS5 button previews](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.46)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Controller reader and previews
+
+Version 3.1.46 brings V1's SDL physical-controller read and attachment-check sequence into V3. Dedicated polling requests a 4 ms interval, while physical-device qualification, neutral output on detach and explicit output arming remain in place. Local checks passed, including unplug/reconnect and an occupied worker pool. Laptop hardware and the actual console connection still need testing after installation.
+
+The **Controller** tab shows the V1 PS5 controller image. A compact copy also stays visible below the game picture across tabs. Purple marks held buttons. Both views share the existing physical input snapshot; they do not open a second controller reader.
+
+The compact UI uses buttons and small **!** controls for details. It retains the saved profile picker, setup cues, themes and pinned Timing controls. Shot timing calculations, meter detection and models are unchanged in 3.1.46.
 
 ### App performance and reliability
 
