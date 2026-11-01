@@ -4,9 +4,17 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.44 — Clearer setup, profiles and portable PS5 fixes](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.44)
+[AI Trainer 3.1.45 — App performance and reliability fixes](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.45)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### App performance and reliability
+
+Version 3.1.45 reduces repeated setup-status work and unnecessary download-progress callbacks. Cancelled downloads no longer repaint obsolete progress, and cancelling GitHub setup keeps private uploads OFF even if an earlier access check completes later.
+
+It also fixes upload queues that could be saved but fail to reload on restart. State reads and writes now share a bounded size limit; oversized writes preserve the previous file. Duplicate identifiers are checked with a set, and the existing 10,000-recording queue cap is enforced on startup.
+
+Diagnostic line parsing uses chunks, with identical prepared bundle hashes in the comparison tests. Isolated parser measurements do not establish higher capture FPS or better shot accuracy. Timing, meter detection, models, controller polling and output behavior are unchanged.
 
 ### Clearer setup
 
