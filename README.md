@@ -1,49 +1,31 @@
 # ai-training-updates
-Compiled Ai Trainer v3 updates only. No application source code or personal settings.
+
+Compiled AI Trainer v3 updates. Application source and personal data are excluded.
 
 ## Latest release
 
-[AI Trainer 3.1.43 — Apply and Arm together in Timing](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.43)
+[AI Trainer 3.1.44 — Clearer setup, profiles and portable PS5 fixes](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.44)
 
-Use the app’s Updates tab to check, download, and install the signed program update.
-The full ZIP is also available from the release. Each computer keeps its own settings,
-PS5 pairing, and recordings. Shooting timing, controller logic, and meter models are unchanged.
+Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
 
-### Apply and Arm together
+### Clearer setup
 
-In Timing, Apply shot settings and Arm PS5 output now sit side by side.
-Apply changes, then arm forwarding, using the same actions and checks as before.
-Both dark and light themes include the paired controls.
+The header and stopped preview show one next-step action. Four status cues show the game picture, controller, PS5 connection and control forwarding. Timing keeps **Apply changes** and **Turn controls ON** fixed below its settings. Short hints, expandable help, clearer bug-log labels and both dark and light themes are included. These UI changes preserve the shot timing calculations, meter models and controller behavior.
 
-### Selectable appearance
+### Saved profiles
 
-Use Theme at the top right to choose Neon Pulse (dark) or Frosted Studio (light).
-Appearance is saved separately on each copy; it never applies or resets shot settings.
-Both themes retain all controls, with matching cards, dropdowns and navigation icons.
-The standby illustration is hidden during live video. Captured frames are unchanged.
+Use **Profile** under AI Trainer to select a saved setup, or **+ Create** to copy the settings shown. Switching saves the current profile's edits and stops video and forwarding before loading the chosen setup. Start video and turn controls ON again when ready. The last selected profile returns at startup. Default starts with existing settings; PS5 pairing stays separate.
 
-### Arm output from Timing
+### PS5 fixes for other PCs
 
-The Timing tab now has Arm PS5 controller output at the top, with shared live status.
-It uses the existing arming action and keeps all connection and released-input checks.
-This cumulative update includes the earlier branding and private recording uploads.
+The package now includes required compiled Python modules that earlier portable packages omitted. The complete bundled PS5 runtime is checked without global Python before packaging. Pairing, Forget and changed-address operations preserve the saved list if encrypted storage cannot be written. Pair each PC separately, using that console's address, the correct PSN account ID and a fresh eight-digit pairing code. Encrypted pairing files cannot be transferred between Windows accounts.
 
-### New app identity
+Automated runtime, UI, profile and simulated connection checks passed. Network conditions and live console behavior still need checking on the actual setup; these checks do not establish live shot accuracy.
 
-Matching mint A / white T branding now appears in the app header and Windows icon.
-Reusable PNG and multi-resolution ICO assets are included in the branding folder.
-This is a presentation-only update; it also includes the private upload feature below.
+### Private bug-log uploads
 
-### Private Record uploads
+In **Help & logs**, expand **Send bug logs to your private GitHub**. Connect GitHub once on each PC using an account with write access to the private diagnostics repository. New completed Record bug logs upload as private draft-release assets when enabled. Uploads wait while forwarding is armed, then resume when it is off or V3 reopens. Offline failures stay queued; original recordings stay local.
 
-After updating, open Status → Private recording uploads and connect GitHub once on
-that PC using an account with write access to the private diagnostics repository.
-New completed Record logs then upload automatically as private draft-release assets.
-Uploads wait while controller forwarding is armed and resume after it is off or V3
-reopens. Offline recordings stay queued for retry; originals remain on the PC.
+Bundles contain redacted diagnostics. Gameplay video, meter photos, historical recordings and account credentials are not automatically uploaded. GitHub authorization stays on each PC. This public repository contains program releases and public instructions only.
 
-Uploaded bundles contain redacted diagnostics. Video, meter photos, account credentials,
-and historical recordings are not automatically uploaded. GitHub authorization stays
-on each PC and is not included in the ZIP. Program updates and private log uploads
-are separate: this public repository contains compiled program releases only.
-
+Each computer keeps its settings, device choices, PS5 pairings and recordings when updating. The update retains the mint A / white T branding, Neon Pulse and Frosted Studio themes, earlier Timing controls and private log uploads.
