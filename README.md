@@ -3,11 +3,17 @@ Compiled Ai Trainer v3 updates only. No application source code or personal sett
 
 ## Latest release
 
-[AI Trainer 3.1.39 — Private recording uploads](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.39)
+[AI Trainer 3.1.40 — New app icon and logo](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.40)
 
 Use the app’s Updates tab to check, download, and install the signed program update.
 The full ZIP is also available from the release. Each computer keeps its own settings,
 PS5 pairing, and recordings. Shooting timing, controller logic, and meter models are unchanged.
+
+### New app identity
+
+Matching mint A / white T branding now appears in the app header and Windows icon.
+Reusable PNG and multi-resolution ICO assets are included in the branding folder.
+This is a presentation-only update; it also includes the private upload feature below.
 
 ### Private Record uploads
 
