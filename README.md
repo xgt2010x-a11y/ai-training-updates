@@ -3,11 +3,17 @@ Compiled Ai Trainer v3 updates only. No application source code or personal sett
 
 ## Latest release
 
-[AI Trainer 3.1.40 — New app icon and logo](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.40)
+[AI Trainer 3.1.41 — Arm output from Timing](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.41)
 
 Use the app’s Updates tab to check, download, and install the signed program update.
 The full ZIP is also available from the release. Each computer keeps its own settings,
 PS5 pairing, and recordings. Shooting timing, controller logic, and meter models are unchanged.
+
+### Arm output from Timing
+
+The Timing tab now has Arm PS5 controller output at the top, with shared live status.
+It uses the existing arming action and keeps all connection and released-input checks.
+This cumulative update includes the earlier branding and private recording uploads.
 
 ### New app identity
 
