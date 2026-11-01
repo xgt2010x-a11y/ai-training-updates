@@ -4,9 +4,15 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.46 — Controller reader and PS5 button previews](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.46)
+[AI Trainer 3.1.47 — Windows controller resource-leak fix](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.47)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Controller crash repair
+
+Version 3.1.47 fixes a Windows input-resource leak introduced by the SDL integration in 3.1.46. The reader now services its own hidden Windows input window and clears unused SDL events. It does not pump the app's UI thread or add another controller reader. The original leak reproduced at about 250 USER objects per second; the repaired two-minute native DualSense test held at 6-7 objects across 28,302 controller updates and returned to 1 on shutdown.
+
+If 3.1.46 keeps crashing, reopen it and go directly to **Updates** before turning on **Read controller**. Install 3.1.47 and restart when ready. Timing calculations, meter detection/models, input mapping, polling interval and previews are unchanged. The native test read the controller without capture or PS5 output; it does not prove every possible crash is resolved.
 
 ### Controller reader and previews
 
