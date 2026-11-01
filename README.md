@@ -3,11 +3,17 @@ Compiled Ai Trainer v3 updates only. No application source code or personal sett
 
 ## Latest release
 
-[AI Trainer 3.1.42 — Neon Pulse and Frosted Studio themes](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.42)
+[AI Trainer 3.1.43 — Apply and Arm together in Timing](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.43)
 
 Use the app’s Updates tab to check, download, and install the signed program update.
 The full ZIP is also available from the release. Each computer keeps its own settings,
 PS5 pairing, and recordings. Shooting timing, controller logic, and meter models are unchanged.
+
+### Apply and Arm together
+
+In Timing, Apply shot settings and Arm PS5 output now sit side by side.
+Apply changes, then arm forwarding, using the same actions and checks as before.
+Both dark and light themes include the paired controls.
 
 ### Selectable appearance
 
