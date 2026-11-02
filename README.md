@@ -4,9 +4,19 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.47 — Windows controller resource-leak fix](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.47)
+[AI Trainer 3.1.48 — video, controller and installer improvements](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.48)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Video, laptop controller and installation improvements
+
+Version 3.1.48 gives the existing capture, analysis and preview workers dedicated threads. The preview defers a busy bitmap upload and avoids copying identical image/drawing updates. These changes passed isolated scheduling and presentation checks; actual smoothness still depends on the capture setup and PC.
+
+Slow SDL startup now has up to five seconds to produce its first controller reading. Once acquired, the existing 250 ms stale-input cutoff remains active. The ordered PS5 helper writer has its own thread so a busy shared worker pool cannot hold up forwarding. Button order, neutralization, explicit arming, controller mapping and 4 ms polling remain unchanged. Two failure reproductions and 194 connection checks passed; the reported laptop still needs checking after installation.
+
+Future installations verify existing file hashes and back up/replace only changed program files, preserving full signed-package authentication, final installed-file verification and rollback. The controlled 1,961-file, 8 MB synthetic install-only test fell from about 49 seconds to 16 seconds. This is not a full restart benchmark. The older helper installs this release, so the full speed benefit applies to subsequent updates installed by 3.1.48.
+
+Timing algorithms, meter detection/models and the 3.1.47 controller crash repair are preserved. This is cumulative and includes all earlier updates.
 
 ### Controller crash repair
 
