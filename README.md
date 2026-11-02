@@ -4,9 +4,17 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.49 — preview presentation repair](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.49)
+[AI Trainer 3.1.50 — V1-style stable preview binding](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.50)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Stable preview image binding
+
+Version 3.1.50 keeps one image source attached to the preview control while the existing three reusable pixel buffers rotate behind a retained drawing. It follows V1's stable image-binding approach while preserving the buffer handling introduced in 3.1.49. Resolution changes update the drawing bounds; Stop releases the drawing and buffers. Bug-log heartbeats include a source-rebind counter.
+
+The controlled 12-frame comparison reduced preview-control Image.Source assignments from 12 to one. 204 focused and existing checks passed, covering actual WPF drawing colors, resolution changes, pixel sampling, busy-buffer handling and cleanup. This is a presentation experiment, not a measured live FPS improvement; smoothness must be compared after installation.
+
+Capture source/pacing, meter detection/models, shot timing, controller input and settings remain unchanged. This cumulative update includes all earlier releases.
 
 ### Preview presentation repair
 
