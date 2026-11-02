@@ -4,9 +4,17 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.48 — video, controller and installer improvements](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.48)
+[AI Trainer 3.1.49 — preview presentation repair](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.49)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Preview presentation repair
+
+Version 3.1.49 addresses a display bottleneck observed after 3.1.48: capture/analysis delivered about 60 frames per second while the HUD preview stayed near 20 fps. The display now rotates three reusable bitmap surfaces so it can use an idle surface when the renderer retains a recent one. It keeps only the latest pending image rather than queuing old pictures.
+
+A failed upload leaves the previous picture and original-pixel sample paired. Stop releases the reusable surfaces and pending pixel leases. Bug logs now include render callbacks, uploads, busy deferrals, rejected frames, surface count and graphics render tier to identify any remaining presentation bottleneck.
+
+The same controlled two-callback busy-renderer case accepted 4 of 12 new frames before and 12 of 12 afterward. 197 focused/existing preview checks passed, along with the earlier scheduling/preview regression harness. This simulates bitmap availability; a live after-install FPS comparison is still needed. Capture source/pacing, meter detection/models, shot timing and controller code remain unchanged. This cumulative update includes all earlier releases.
 
 ### Video, laptop controller and installation improvements
 
