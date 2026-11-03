@@ -4,11 +4,21 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.52 — preview dispatch regression correction](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.52)
+[AI Trainer 3.1.53 — live yellow search box control](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.53)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
 
-### Preview dispatch regression correction
+### Live yellow search box control
+
+Version 3.1.53 starts with the yellow search outline and its label hidden. Expand **Live details** below the preview and use **Show yellow search box** to compare while video runs. No Apply or capture restart is needed. Detection keeps using your applied search area; A/B marks, meter history and shot timing are preserved. The view starts hidden again on the next launch.
+
+When hidden, changes only to search-box geometry no longer upload the same captured picture again. Visible meter drawing changes still upload correctly. This retains the 3.1.52 pacing correction without adding a per-frame dispatcher or timer.
+
+An isolated 1080p CPU test measured roughly 0.014 ms extra drawing time for the box and label. It does not measure GPU presentation or establish the cause of whole-picture stutter. Live smoothness still needs comparison after installation.
+
+All 1,961 program files and previous features are included. Capture/analysis, meter models, shot calculations and controller transport are preserved. Each PC keeps its settings, pairing and recordings.
+
+### Preview dispatch regression correction (3.1.52)
 
 Version 3.1.52 removes the extra per-frame dispatcher path introduced in 3.1.51 and restores the render-paced preview used in 3.1.50. This corrects excess submissions: raw pictures and their annotations coalesce before the render tick.
 
