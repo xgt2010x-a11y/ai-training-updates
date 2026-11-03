@@ -4,11 +4,19 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.51 — fresh-frame preview scheduling](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.51)
+[AI Trainer 3.1.52 — preview dispatch regression correction](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.52)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
 
-### Fresh-frame preview scheduling
+### Preview dispatch regression correction
+
+Version 3.1.52 removes the extra per-frame dispatcher path introduced in 3.1.51 and restores the render-paced preview used in 3.1.50. This corrects excess submissions: raw pictures and their annotations coalesce before the render tick.
+
+The same controlled raw-plus-annotation case uploaded 24 pictures in 12 render ticks with 3.1.51, and 12 with this correction. Existing preview, pixel-picker, overlay, busy-surface, reset, resolution and runtime checks pass. This is a correction for the reported regression; the earlier occasional stutter and physical display latency remain under investigation. Visible smoothness after installation still needs comparison.
+
+This complete cumulative update retains all 1,961 program files and prior features. Meter models, capture/analysis, shot calculations and controller transport are preserved. Each PC keeps its settings, pairing and recordings.
+
+### Fresh-frame preview scheduling (3.1.51, superseded)
 
 Version 3.1.51 lets a freshly prepared video frame request a UI update alongside the existing rendering callback. Only one request can wait at a time, and newer pictures replace the pending image. This addresses a scheduling weakness that can leave a ready picture waiting when a render tick is delayed.
 
