@@ -4,9 +4,17 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.50 — V1-style stable preview binding](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.50)
+[AI Trainer 3.1.51 — fresh-frame preview scheduling](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.51)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
+
+### Fresh-frame preview scheduling
+
+Version 3.1.51 lets a freshly prepared video frame request a UI update alongside the existing rendering callback. Only one request can wait at a time, and newer pictures replace the pending image. This addresses a scheduling weakness that can leave a ready picture waiting when a render tick is delayed.
+
+The prior version reproduced that wait in a controlled test with rendering callbacks withheld. The updated version presents the newest frame and coalesces 120 prepared pictures into one pending UI request. Pixel sampling, overlays, busy-surface retry, Stop/reset and the existing preview regressions pass. Actual visible smoothness after installation still needs comparison; this does not promise zero delay or eliminate every possible stutter.
+
+This complete update includes all 1,961 program files and earlier updates. Capture/analysis, meter models, shot calculations and controller transport are preserved. Updates keep this PC's saved settings, pairing and recordings.
 
 ### Stable preview image binding
 
