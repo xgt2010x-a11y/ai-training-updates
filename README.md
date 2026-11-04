@@ -4,11 +4,21 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.53 — live yellow search box control](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.53)
+[AI Trainer 3.1.54 — paced preview scheduling](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.54)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
 
-### Live yellow search box control
+### Paced preview scheduling
+
+Version 3.1.54 gives ready pictures one paced UI scheduler instead of waiting solely on WPF rendering callbacks. Raw pictures and annotations share a short coalescing deadline. Only one UI callback can wait, and a stalled UI resumes with the latest image. The configured video rate and Windows composition rate limit preview work. A native waitable timer keeps the cadence without changing the system-wide timer resolution. Busy bitmap surfaces retry through this same scheduler.
+
+This addresses the ready-frame waiting found in the 3.1.53 trace. In a controlled test with rendering callbacks withheld, the previous path did not present within an 80 ms observation window; the new path presented in about 8 ms. A paired-arrival model produces 60 dispatches for 60 captures and 120 raw/analysis arrivals. An isolated native dispatcher test sustains approximately 60 updates/s. These establish scheduling behavior, not physical gameplay smoothness or zero delay.
+
+The pixel-picker, same-frame annotations, yellow box switch, bounded bitmap pool, Stop/reset, retry and disposal checks pass, including 185 existing preview checks. New heartbeat measurements separate ready-frame waiting from submission duration. The yellow box still starts hidden and can be shown under Live details.
+
+The complete 1,961-file cumulative update includes all earlier features. Capture, detector/model, shot calculations and controller transport are preserved. Each PC keeps its current profiles, pairing and recordings. Install from Updates when ready.
+
+### Live yellow search box control (3.1.53)
 
 Version 3.1.53 starts with the yellow search outline and its label hidden. Expand **Live details** below the preview and use **Show yellow search box** to compare while video runs. No Apply or capture restart is needed. Detection keeps using your applied search area; A/B marks, meter history and shot timing are preserved. The view starts hidden again on the next launch.
 
