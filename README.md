@@ -4,11 +4,21 @@ Compiled AI Trainer v3 updates. Application source and personal data are exclude
 
 ## Latest release
 
-[AI Trainer 3.1.55 — paced preview scheduling](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.55)
+[AI Trainer 3.1.56 — controller helper fairness and re-arm safety](https://github.com/xgt2010x-a11y/ai-training-updates/releases/tag/v3.1.56)
 
 Open the app's **Updates** tab, check for updates and download. Choose **Install and restart** when ready. This is a complete cumulative update: you can skip earlier versions. A complete program ZIP is also available from the release.
 
-### Complete paced preview scheduling
+### Controller helper fairness and re-arm safety
+
+Version 3.1.56 lets the helper's network, health and watchdog tasks run while controller input is continuously available. Coalesced input retains only one pending event-loop wake notification. The reproduced backlog case previously made no background progress while processing 240 states; the packaged correction allows background progress and preserves input order. A 1,000-state burst now retains one pending wake callback.
+
+After timeout or neutralization, the helper rejects further states until the user explicitly arms output again. The host orders that internal arm command before the new lease's first report. Reports already in transit cannot silently resume controls. The 250 ms stale-input cutoff, ordered button transitions and Remote Play feedback packet format are preserved.
+
+All 24 helper tests and 109 injected transport checks pass. The exact packaged bytecode also passes fairness and timeout/re-arm tests. Capture, detector, preview, physical-reader and shot-calculation source are unchanged. All models/native runtimes match 3.1.55. The build verifies that the shipped helper bytecode comes from the current reviewed source.
+
+This corrects reproduced helper defects; it does not prove the cause of a physical device attachment loss or HDMI passthrough freeze. Live improvement on the affected machine still needs comparison. The full 1,961-file cumulative package retains all prior features and preserves each PC's settings, pairing and recordings.
+
+### Complete paced preview scheduling (3.1.55)
 
 Version 3.1.55 gives ready pictures one paced UI scheduler instead of waiting solely on WPF rendering callbacks. Raw pictures and annotations share a short coalescing deadline. Only one UI callback can wait, and a stalled UI resumes with the latest image. The configured video rate and Windows composition rate limit preview work. A native waitable timer keeps the cadence without changing the system-wide timer resolution. Busy bitmap surfaces retry through this same scheduler.
 
